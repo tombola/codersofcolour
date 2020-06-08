@@ -7,16 +7,9 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL
-    )
 
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full"),
-        ImageChooserPanel('image'),
     ]
 
     def get_context(self, request):
@@ -32,8 +25,15 @@ class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     body = RichTextField(blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
     content_panels = Page.content_panels + [
         FieldPanel('date'),
         FieldPanel('intro'),
         FieldPanel('body', classname="full"),
+        ImageChooserPanel('image'),
     ]

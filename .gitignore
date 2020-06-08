@@ -1,1 +1,4 @@
 *.pyc
+mysite/media
+.DS_Store
+mysite/db.sqlite3

@@ -1,7 +1,16 @@
 import os
+
 import dj_database_url
+
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 from .base import *
 
+sentry_sdk.init(
+    dsn=os.environ['SENTRY_DSN'],
+    integrations=[DjangoIntegration()]
+)
 
 env = os.environ.copy()
 
